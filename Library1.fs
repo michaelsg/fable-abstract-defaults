@@ -1,4 +1,25 @@
 ﻿namespace fable_abstract_defaults
+open Fable.Core
 
-type Class1() = 
-    member this.X = "F#"
+[<AbstractClass>]
+type AbstractClassWithDefaults () =
+
+    abstract MethodWithDefault : unit -> unit
+    default x.MethodWithDefault () = ()
+
+    abstract MustImplement: unit -> unit
+
+    member x.CallMethodWithDefault () =
+        x.MethodWithDefault()
+
+type ConcreteClass () =
+    inherit AbstractClassWithDefaults()
+
+    override x.MustImplement () = ()
+
+    override x.MethodWithDefault () = ()
+
+
+
+
+
